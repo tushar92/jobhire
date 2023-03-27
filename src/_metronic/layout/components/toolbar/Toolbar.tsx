@@ -36,7 +36,7 @@ const Toolbar = () => {
               {/* begin::Row */}
               <div className='row flex-grow-1 mb-5 mb-lg-0'>
                 {/* begin::Col */}
-                <div className='col-lg-4 d-flex align-items-center mb-3 mb-lg-0'>
+                <div className='col-lg-8 d-flex align-items-center mb-3 mb-lg-0'>
                   <KTSVG
                     path='/media/icons/duotune/general/gen021.svg'
                     className='svg-icon-1 svg-icon-gray-400 me-1'
@@ -48,38 +48,13 @@ const Toolbar = () => {
                     name='search'
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    placeholder='Your Search'
+                    placeholder='Job Title'
                   />
                   {/* end::Input */}
                 </div>
                 {/* end::Col */}
 
-                {/* begin::Col */}
-                <div className='col-lg-4 d-flex align-items-center mb-5 mb-lg-0'>
-                  {/* begin::Desktop separartor */}
-                  <div className='bullet bg-secondary d-none d-lg-block h-30px w-2px me-5'></div>
-                  {/* end::Desktop separartor */}
-                  <KTSVG
-                    path='/media/icons/duotune/general/gen025.svg'
-                    className='svg-icon-1 svg-icon-gray-400 me-1'
-                  />
-                  {/* begin::Select */}
-                  <select
-                    className='form-select border-0 flex-grow-1'
-                    data-control='select2'
-                    data-placeholder='Category'
-                    data-hide-search='true'
-                    defaultValue={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                  >
-                    <option value=''></option>
-                    <option value='1'>Category</option>
-                    <option value='2'>In Progress</option>
-                    <option value='3'>Done</option>
-                  </select>
-                  {/* end::Select */}
-                </div>
-                {/* end::Col */}
+
 
                 {/* begin::Col */}
                 <div className='col-lg-4 d-flex align-items-center'>
@@ -114,11 +89,11 @@ const Toolbar = () => {
             {/* end::Simple form */}
 
             {/* begin::Action */}
-            <div className='d-flex align-items-center'>
+            {/*<div className='d-flex align-items-center'>
               <a className='fw-bold link-white fs-5' href='#'>
                 Advanced Search
               </a>
-            </div>
+            </div>*/}
             {/*end::Action*/}
           </div>
           {/*end::Block*/}

@@ -10,13 +10,6 @@ type Props = {
 const AsideMenu: React.FC<Props> = ({asideMenuCSSClasses}) => {
   const {pathname} = useLocation()
 
-  useEffect(() => {
-    setTimeout(() => {
-      DrawerComponent.reinitialization()
-      ToggleComponent.reinitialization()
-    }, 50)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname])
 
   return (
     <div

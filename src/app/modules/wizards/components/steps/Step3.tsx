@@ -1,91 +1,47 @@
-import React, {FC} from 'react'
-import {Field, ErrorMessage} from 'formik'
+import React, { FC, useRef, useEffect, useState } from 'react'
+import { Field, ErrorMessage } from 'formik'
+import { Player, Controls } from '@lottiefiles/react-lottie-player';
 
-const Step3: FC = () => {
+type Props = {
+  stepper?: any,
+}
+
+const Step3: FC<Props> = ({ stepper }) => {
+  const playerRef = useRef<Player | null>(null)
+  const [random, setRandom] = useState(Math.random())
+  const loadLottie = () => {
+    setRandom(Math.random())
+    playerRef.current ?.play();
+  }
+  useEffect(() => {
+    if (!playerRef.current) {
+      return
+    }
+    loadLottie()
+  }, [])
   return (
     <div className='w-100'>
       <div className='pb-10 pb-lg-12'>
-        <h2 className='fw-bolder text-dark'>Business Details</h2>
+        <h2 className='fw-bolder text-dark'>Good Luck</h2>
 
         <div className='text-gray-400 fw-bold fs-6'>
-          If you need more info, please check out
-          <a href='/dashboard' className='link-primary fw-bolder'>
-            {' '}
-            Help Page
-          </a>
-          .
+          Your application is on the way.
         </div>
       </div>
 
       <div className='fv-row mb-10'>
-        <label className='form-label required'>Business Name</label>
-
-        <Field name='businessName' className='form-control form-control-lg form-control-solid' />
-        <div className='text-danger mt-2'>
-          <ErrorMessage name='businessName' />
-        </div>
-      </div>
-
-      <div className='fv-row mb-10'>
-        <label className='d-flex align-items-center form-label'>
-          <span className='required'>Shortened Descriptor</span>
-        </label>
-
-        <Field
-          name='businessDescriptor'
-          className='form-control form-control-lg form-control-solid'
-        />
-        <div className='text-danger mt-2'>
-          <ErrorMessage name='businessDescriptor' />
-        </div>
-
-        <div className='form-text'>
-          Customers will see this shortened version of your statement descriptor
-        </div>
-      </div>
-
-      <div className='fv-row mb-10'>
-        <label className='form-label required'>Corporation Type</label>
-
-        <Field
-          as='select'
-          name='businessType'
-          className='form-select form-select-lg form-select-solid'
+        <Player
+          ref={playerRef}
+          src="https://assets9.lottiefiles.com/packages/lf20_a1EoSR.json"
+          style={{ height: '200px', width: '200px' }}
+          speed={1}
+          keepLastFrame={true}
         >
-          <option></option>
-          <option value='1'>S Corporation</option>
-          <option value='1'>C Corporation</option>
-          <option value='2'>Sole Proprietorship</option>
-          <option value='3'>Non-profit</option>
-          <option value='4'>Limited Liability</option>
-          <option value='5'>General Partnership</option>
-        </Field>
-        <div className='text-danger mt-2'>
-          <ErrorMessage name='businessType' />
-        </div>
-      </div>
-
-      <div className='fv-row mb-10'>
-        <label className='form-label'>Business Description</label>
-
-        <Field
-          as='textarea'
-          name='businessDescription'
-          className='form-control form-control-lg form-control-solid'
-          rows={3}
-        ></Field>
-      </div>
-
-      <div className='fv-row mb-0'>
-        <label className='fs-6 fw-bold form-label required'>Contact Email</label>
-
-        <Field name='businessEmail' className='form-control form-control-lg form-control-solid' />
-        <div className='text-danger mt-2'>
-          <ErrorMessage name='businessEmail' />
-        </div>
+          <Controls visible={false} buttons={['play', 'repeat', 'frame', 'debug']} />
+        </Player>
       </div>
     </div>
   )
 }
 
-export {Step3}
+export { Step3 }

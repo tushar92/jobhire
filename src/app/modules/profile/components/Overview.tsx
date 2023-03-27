@@ -30,7 +30,7 @@ export function Overview() {
 
         <ListsWidget5 className='mb-5 mb-xxl-8' />
 
-        <ListsWidget2 className='mb-5 mb-xxl-8' />
+        <ListsWidget2 className='mb-5 mb-xxl-8' title="Head of data in Sydney"/>
       </div>
     </div>
   )

@@ -19,7 +19,7 @@ const Lists: FC = () => {
           <ListsWidget1 className='card-xl-stretch mb-xl-8' />
         </div>
         <div className='col-xl-4'>
-          <ListsWidget2 className='card-xl-stretch mb-xl-8' />
+          <ListsWidget2 className='card-xl-stretch mb-xl-8' title="Head of data in Sydney"/>
         </div>
         <div className='col-xl-4'>
           <ListsWidget3 className='card-xl-stretch mb-5 mb-xl-8' />

@@ -21,29 +21,28 @@
           flex-shrink: 0;
           width: 45px;
           height: 45px;
-          @include border-radius($border-radius);
+          @include border-radius($border-radius-pill);
 
           i,
           .svg-icon {
-            color: $white !important;
+            color: $asideIconColor !important;
           }
         }
 
         &:hover {
           .menu-icon {
-            background-color: rgba($white, 0.1);
+            background-color: $gray-200;
 
             i,
             .svg-icon {
-              color: $white !important;
+              color: $primary !important;
             }
           }
         }
 
         &.active {
           .menu-icon {
-            background-color: $white;
-
+            background-color: $gray-200;
             i,
             .svg-icon {
               color: $primary !important;
@@ -55,11 +54,11 @@
       &.here > .menu-link,
       &.show > .menu-link {
         .menu-icon {
-          background-color: rgba($white, 0.1);
+          background-color: $gray-200;
 
           i,
           .svg-icon {
-            color: $white !important;
+            color: $primary !important;
           }
         }
       }

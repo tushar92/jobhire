@@ -189,7 +189,7 @@ class StepperComponent {
           ElementAnimateUtil.animateClass(element, animation)
         }
       } else {
-        if (index < this.currentStepIndex) {
+        if (index < this.currentStepIndex || this.currentStepIndex  === this.totatStepsNumber) {
           element.classList.add('completed')
         } else {
           element.classList.add('pending')

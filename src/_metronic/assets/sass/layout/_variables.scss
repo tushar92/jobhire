@@ -17,9 +17,9 @@ $app-blank-bg-color-dark: #151521;
 
 // Content Spacing
 $content-spacing: (
-  desktop: 30px,
+  desktop: 15px,
   // Padding for desktop mode
-  tablet-and-mobile: 15px // Padding for tablet and mobile modes,
+  tablet-and-mobile: 20px // Padding for tablet and mobile modes,
 ) !default;
 
 // Header
@@ -28,7 +28,7 @@ $header-config: (
   default:
     (
       height: (
-        desktop: 80px,
+        desktop: 60px,
         tablet-and-mobile: 60px,
       ),
       bg-color: $body-bg,
@@ -38,7 +38,7 @@ $header-config: (
   fixed:
     (
       height: (
-        desktop: 80px,
+        desktop: 60px,
         tablet-and-mobile: 60px,
       ),
       z-index: 100,
@@ -52,7 +52,7 @@ $header-config: (
 // Aside
 $aside-config: (
   width: (
-    desktop: 100px,
+    desktop: 60px,
     tablet-and-mobile: 80px,
   ),
   z-index: 98,

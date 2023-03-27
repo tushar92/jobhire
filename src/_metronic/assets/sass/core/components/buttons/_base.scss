@@ -2,6 +2,10 @@
 // Buttons Base
 //
 
+.btn-primary-light{
+  background-color: $primary-light;
+}
+
 // Button
 .btn {
   --#{$prefix}btn-color: var(--#{$prefix}body-color);

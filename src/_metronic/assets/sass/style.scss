@@ -11,3 +11,20 @@
 
 // Layout
 @import 'layout/layout';
+
+
+input:focus, div.PhoneInput:focus, input:active, div.PhoneInput:active, div.PhoneInput:focus-within{
+  outline: 2px solid $primary !important;
+}
+
+input.PhoneInputInput{
+  outline:none !important;
+  border: none;
+  background: transparent;
+}
+
+
+.btn-check:checked + .btn-shade-primary{
+  border: 1px solid $primary !important;
+  background: $primary-light;
+}

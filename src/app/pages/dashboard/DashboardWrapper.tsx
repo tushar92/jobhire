@@ -5,32 +5,33 @@ import {
   ListsWidget4,
   ListsWidget5,
   TablesWidget10,
+  FeaturedJobs,
+  RecommendedJobs,
   MixedWidget8,
   MixedWidget5,
   MixedWidget3,
 } from '../../../_metronic/partials/widgets'
 
 const DashboardPage = () => {
-  useEffect(() => {
-    // We have to show toolbar only for dashboard page
-    document.getElementById('kt_layout_toolbar')?.classList.remove('d-none')
-    return () => {
-      document.getElementById('kt_layout_toolbar')?.classList.add('d-none')
-    }
-  }, [])
+
 
   return (
     <>
       {/* begin::Row  */}
       <div className='row g-5 g-xl-8'>
         {/* begin::Col  */}
-        <div className='col-xxl-4'>
+        {/*<div className='col-xxl-4'>
           <MixedWidget8 className='card-xxl-stretch' chartColor='warning' chartHeight='150px' />
+        </div>*/}
+        {/* end::Col  */}
+        {/* begin::Col  */}
+        <div className='col-xxl-6'>
+          <RecommendedJobs className='card-xxl-stretch mb-5 mb-xl-8' />
         </div>
         {/* end::Col  */}
         {/* begin::Col  */}
-        <div className='col-xxl-8'>
-          <TablesWidget10 className='card-xxl-stretch mb-5 mb-xl-8' />
+        <div className='col-xxl-6'>
+          <FeaturedJobs className='card-xxl-stretch mb-5 mb-xl-8' />
         </div>
         {/* end::Col  */}
       </div>

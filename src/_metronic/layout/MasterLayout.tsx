@@ -4,6 +4,7 @@ import {AsideDefault} from './components/aside/AsideDefault'
 import {Footer} from './components/Footer'
 import {HeaderWrapper} from './components/header/HeaderWrapper'
 import {Toolbar} from './components/toolbar/Toolbar'
+import {Searchbar} from './components/searchbar/Searchbar'
 import {RightToolbar} from '../partials/layout/RightToolbar'
 import {ScrollTop} from './components/ScrollTop'
 import {Content} from './components/Content'
@@ -37,6 +38,7 @@ const MasterLayout = () => {
             <HeaderWrapper />
 
             <Toolbar />
+            <Searchbar />
 
             {/* begin::Content */}
             <div id='kt_content' className='content d-flex flex-column flex-column-fluid'>

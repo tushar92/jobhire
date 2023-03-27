@@ -17,7 +17,7 @@ const DefaultTitle: FC = () => {
       {/* begin::Heading */}
       {pageTitle && (
         <h1 className='text-dark fw-bolder my-1 fs-3 lh-1'>
-          {pageTitle}
+          {pageTitle == 'Home' ? "Welcome Tushar" : pageTitle}
           {pageDescription && config.pageTitle && config.pageTitle.description && (
             <small className='text-muted fs-6 fw-normal ms-1'>{pageDescription}</small>
           )}

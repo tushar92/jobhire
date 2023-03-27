@@ -29,13 +29,12 @@ const AsideMenuItemWithSubMain: FC<Props & WithChildren> = ({
   const {aside} = config
   return (
     <div
-      className={clsx('menu-item py-3', {'here show': isActive})}
+      className={clsx('menu-item py-2', {'here show': isActive})}
       data-kt-menu-trigger='click'
       data-kt-menu-placement='right-start'
     >
       <OverlayTrigger
         placement='right'
-        delay={{show: 250, hide: 400}}
         overlay={(props) => (
           <Tooltip id='button-tooltip' {...props}>
             {bsTitle}
@@ -45,7 +44,7 @@ const AsideMenuItemWithSubMain: FC<Props & WithChildren> = ({
         <span className='menu-link menu-center'>
           {fontIcon && aside.menuIcon === 'font' && (
             <span className='menu-icon me-0'>
-              <i className={clsx('bi', fontIcon, 'fs-2')}></i>
+              <i className={clsx( fontIcon, 'fs-2')}></i>
             </span>
           )}
         </span>

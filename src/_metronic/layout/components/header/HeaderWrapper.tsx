@@ -21,7 +21,7 @@ export function HeaderWrapper() {
       <div
         className={clsx(
           classes.headerContainer.join(' '),
-          'd-flex align-items-stretch justify-content-between'
+          'container-xxl ps-lg-0 d-flex align-items-stretch justify-content-between'
         )}
       >
         {/* begin::Aside mobile toggle */}

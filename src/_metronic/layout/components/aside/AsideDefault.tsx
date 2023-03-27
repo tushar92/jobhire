@@ -13,7 +13,7 @@ const AsideDefault: FC = () => {
   return (
     <div
       id='kt_aside'
-      className={clsx('aside overflow-visible bg-primary', classes.aside.join(' '))}
+      className={clsx('aside overflow-visible bg-white border border-right border-secondary', classes.aside.join(' '))}
       data-kt-drawer='true'
       data-kt-drawer-name='aside'
       data-kt-drawer-activate='{default: true, lg: false}'

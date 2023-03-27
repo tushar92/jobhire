@@ -38,7 +38,6 @@ const AsideMenuItem: FC<Props & WithChildren> = ({
   return (
     <OverlayTrigger
       placement='right'
-      delay={{show: 250, hide: 400}}
       overlay={(props) => (
         <Tooltip id='button-tooltip' {...props}>
           {bsTitle}
@@ -81,7 +80,7 @@ const AsideMenuItem: FC<Props & WithChildren> = ({
               )}
               {fontIcon && aside.menuIcon === 'font' ? (
                 <span className='menu-icon me-0'>
-                  <i className={clsx('bi', fontIcon, 'fs-2')}></i>
+                  <i className={clsx(fontIcon, 'fs-2')}></i>
                 </span>
               ) : (
                 <span className='menu-title'>{title}</span>

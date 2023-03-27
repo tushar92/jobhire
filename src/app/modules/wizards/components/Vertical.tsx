@@ -1,32 +1,41 @@
-import {useEffect, useRef, useState} from 'react'
-import {KTSVG} from '../../../../_metronic/helpers'
-import {Step1} from './steps/Step1'
-import {Step2} from './steps/Step2'
-import {Step3} from './steps/Step3'
-import {Step4} from './steps/Step4'
-import {Step5} from './steps/Step5'
-import {StepperComponent} from '../../../../_metronic/assets/ts/components'
-import {Formik, Form, FormikValues} from 'formik'
-import {ICreateAccount, createAccountSchemas, inits} from './CreateAccountWizardHelper'
+import { FC, useEffect, useRef, useState } from 'react'
+import { KTSVG } from '../../../../_metronic/helpers'
+import { Step1 } from './steps/Step1'
+import { Step2 } from './steps/Step2'
+import { Step3 } from './steps/Step3'
+import { Step4 } from './steps/Step4'
+import { Step5 } from './steps/Step5'
+import { StepperComponent } from '../../../../_metronic/assets/ts/components'
+import { Formik, Form, FormikValues } from 'formik'
+import { ICreateAccount, createAccountSchemas, inits } from './CreateAccountWizardHelper'
+import clsx from 'clsx'
 
-const Vertical = () => {
+type Props = {
+  job?: any,
+  random?: any
+}
+
+const Vertical: FC<Props> = ({ job }) => {
+  const [random, setRandom] = useState(Math.random())
   const stepperRef = useRef<HTMLDivElement | null>(null)
   const stepper = useRef<StepperComponent | null>(null)
   const [currentSchema, setCurrentSchema] = useState(createAccountSchemas[0])
   const [initValues] = useState<ICreateAccount>(inits)
+  const [isSubmitButton, setSubmitButton] = useState(false)
 
   const loadStepper = () => {
+    setRandom(Math.random())
     stepper.current = StepperComponent.createInsance(stepperRef.current as HTMLDivElement)
+    console.log(stepper.current?.currentStepIndex! === stepper.current?.totatStepsNumber!)
   }
 
   const prevStep = () => {
     if (!stepper.current) {
       return
     }
-
     stepper.current.goPrev()
-
     setCurrentSchema(createAccountSchemas[stepper.current.currentStepIndex - 1])
+    setSubmitButton(stepper.current.currentStepIndex === stepper.current.totatStepsNumber)
   }
 
   const submitStep = (values: ICreateAccount, actions: FormikValues) => {
@@ -38,11 +47,15 @@ const Vertical = () => {
       stepper.current.goNext()
     } else {
       stepper.current.goto(1)
+      stepper.current?.goFirst()
       actions.resetForm()
     }
 
+    setSubmitButton(stepper.current.currentStepIndex === stepper.current.totatStepsNumber - 1)
+
     setCurrentSchema(createAccountSchemas[stepper.current.currentStepIndex - 1])
   }
+
 
   useEffect(() => {
     if (!stepperRef.current) {
@@ -50,7 +63,7 @@ const Vertical = () => {
     }
 
     loadStepper()
-  }, [stepperRef])
+  }, [])
 
   return (
     <div
@@ -118,7 +131,7 @@ const Vertical = () => {
             {/* end::Step 2*/}
 
             {/* begin::Step 3*/}
-            <div className='stepper-item' data-kt-stepper-element='nav'>
+            <div className={clsx('stepper-item',{'completed':stepper && stepper.current?.currentStepIndex! === stepper.current?.totatStepsNumber! })} data-kt-stepper-element='nav'>
               {/* begin::Wrapper*/}
               <div className='stepper-wrapper'>
                 {/* begin::Icon*/}
@@ -137,59 +150,11 @@ const Vertical = () => {
               </div>
               {/* end::Wrapper*/}
 
-              {/* begin::Line*/}
-              <div className='stepper-line h-40px'></div>
-              {/* end::Line*/}
+
             </div>
             {/* end::Step 3*/}
 
-            {/* begin::Step 4*/}
-            <div className='stepper-item' data-kt-stepper-element='nav'>
-              {/* begin::Wrapper*/}
-              <div className='stepper-wrapper'>
-                {/* begin::Icon*/}
-                <div className='stepper-icon w-40px h-40px'>
-                  <i className='stepper-check fas fa-check'></i>
-                  <span className='stepper-number'>4</span>
-                </div>
-                {/* end::Icon*/}
 
-                {/* begin::Label*/}
-                <div className='stepper-label'>
-                  <h3 className='stepper-title'>Billing Details</h3>
-                  <div className='stepper-desc fw-semibold'>Set Your Payment Methods</div>
-                </div>
-                {/* end::Label*/}
-              </div>
-              {/* end::Wrapper*/}
-
-              {/* begin::Line*/}
-              <div className='stepper-line h-40px'></div>
-              {/* end::Line*/}
-            </div>
-            {/* end::Step 4*/}
-
-            {/* begin::Step 5*/}
-            <div className='stepper-item' data-kt-stepper-element='nav'>
-              {/* begin::Wrapper*/}
-              <div className='stepper-wrapper'>
-                {/* begin::Icon*/}
-                <div className='stepper-icon w-40px h-40px'>
-                  <i className='stepper-check fas fa-check'></i>
-                  <span className='stepper-number'>5</span>
-                </div>
-                {/* end::Icon*/}
-
-                {/* begin::Label*/}
-                <div className='stepper-label'>
-                  <h3 className='stepper-title'>Completed</h3>
-                  <div className='stepper-desc fw-semibold'>Woah, we are here</div>
-                </div>
-                {/* end::Label*/}
-              </div>
-              {/* end::Wrapper*/}
-            </div>
-            {/* end::Step 5*/}
           </div>
           {/* end::Nav*/}
         </div>
@@ -198,7 +163,7 @@ const Vertical = () => {
       {/* begin::Aside*/}
 
       <div className='d-flex flex-row-fluid flex-center bg-body rounded'>
-        <Formik validationSchema={currentSchema} initialValues={initValues} onSubmit={submitStep}>
+        <Formik validationSchema={currentSchema} initialValues={initValues} onSubmit={submitStep} key={job.id}>
           {() => (
             <Form className='py-20 w-100 w-xl-700px px-9' noValidate id='kt_create_account_form'>
               <div className='current' data-kt-stepper-element='content'>
@@ -210,16 +175,9 @@ const Vertical = () => {
               </div>
 
               <div data-kt-stepper-element='content'>
-                <Step3 />
+                <Step3 key={job.id} />
               </div>
 
-              <div data-kt-stepper-element='content'>
-                <Step4 />
-              </div>
-
-              <div data-kt-stepper-element='content'>
-                <Step5 />
-              </div>
 
               <div className='d-flex flex-stack pt-10'>
                 <div className='mr-2'>
@@ -237,20 +195,21 @@ const Vertical = () => {
                   </button>
                 </div>
 
-                <div>
-                  <button type='submit' className='btn btn-lg btn-primary me-3'>
-                    <span className='indicator-label'>
-                      {stepper.current?.currentStepIndex !==
-                        stepper.current?.totatStepsNumber! - 1 && 'Continue'}
-                      {stepper.current?.currentStepIndex ===
-                        stepper.current?.totatStepsNumber! - 1 && 'Submit'}
-                      <KTSVG
-                        path='/media/icons/duotune/arrows/arr064.svg'
-                        className='svg-icon-3 ms-2 me-0'
-                      />
-                    </span>
-                  </button>
-                </div>
+                {stepper.current?.currentStepIndex !== stepper.current?.totatStepsNumber &&
+                  <div>
+                    <button type='submit' className='btn btn-lg btn-primary me-3'>
+                      <span className='indicator-label'>
+                        {stepper.current ?.currentStepIndex !==
+                          stepper.current ?.totatStepsNumber! - 1 && 'Continue'}
+                        {stepper.current ?.currentStepIndex ===
+                          stepper.current ?.totatStepsNumber! - 1 && 'Submit'}
+                        <KTSVG
+                          path='/media/icons/duotune/arrows/arr064.svg'
+                          className='svg-icon-3 ms-2 me-0'
+                        />
+                      </span>
+                    </button>
+                  </div>}
               </div>
             </Form>
           )}
@@ -260,4 +219,4 @@ const Vertical = () => {
   )
 }
 
-export {Vertical}
+export { Vertical }

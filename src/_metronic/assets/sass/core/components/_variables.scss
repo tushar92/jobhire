@@ -9,6 +9,7 @@ $prefix: bs- !default; // Deprecated in v5.2.0 for the shorter `$prefix`
 // Bootstrap color system
 $white: #ffffff !default;
 $black: #000000 !default;
+$asideIconColor: #898989 !default;
 
 // Bootstrap grey colors
 $gray-100: #f9f9f9 !default;
@@ -43,6 +44,7 @@ $primary: #3699ff !default;
 $primary-active: #187de4 !default;
 $primary-light: #f1faff !default;
 $primary-inverse: $white !default;
+
 
 // Secondary colors
 $secondary: $gray-300 !default;
@@ -892,8 +894,8 @@ $accordion-button-active-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3
 // Tooltips
 $tooltip-font-size: 1rem !default;
 $tooltip-max-width: 200px !default;
-$tooltip-color: var(--#{$prefix}gray-800) !default;
-$tooltip-bg: $body-bg !default;
+$tooltip-color: $white !default;
+$tooltip-bg: darken($primary, 20%) !default;  // tush
 $tooltip-border-radius: $btn-border-radius !default;
 $tooltip-opacity: 1 !default;
 $tooltip-box-shadow: 0px 0px 50px 0px rgba(82, 63, 105, 0.075) !default;
