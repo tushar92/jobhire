@@ -25,14 +25,14 @@ export function AsideMenuMain() {
 
       <AsideMenuItem
         to='/builder'
-        title='Layout Builder'
+        title='Saved Jobs'
         bsTitle='Saved Jobs'
         fontIcon='fa-solid fa-star'
         className='py-2'
       />
 
       <AsideMenuItem
-        to='/apps/user-management/users'
+        to='/apps/applied-jobs/users'
         title='User management'
         fontIcon='fa-solid fa-briefcase'
         bsTitle='Applied Jobs'

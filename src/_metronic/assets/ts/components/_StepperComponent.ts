@@ -42,7 +42,7 @@ class StepperComponent {
     this.instanceUid = getUniqueIdWithPrefix('stepper')
 
     // Elements
-    this.steps = this.element.querySelectorAll('[data-kt-stepper-element="nav"]')
+    this.steps = this.element.querySelectorAll('[data-kt-stepper-element="nav"]') 
     this.btnNext = this.element.querySelector('[data-kt-stepper-action="next"]')
     this.btnPrev = this.element.querySelector('[data-kt-stepper-action="previous"]')
     this.btnSubmit = this.element.querySelector('[data-kt-stepper-action="submit"]')

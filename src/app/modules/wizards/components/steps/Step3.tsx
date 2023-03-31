@@ -8,11 +8,19 @@ type Props = {
 
 const Step3: FC<Props> = ({ stepper }) => {
   const playerRef = useRef<Player | null>(null)
+  const [c, setc] = useState(0)
   const [random, setRandom] = useState(Math.random())
   const loadLottie = () => {
     setRandom(Math.random())
-    playerRef.current ?.play();
+    setc(c + 1)
   }
+
+  const doSomething = () => {
+    console.log('load')
+    playerRef.current ?.play(); // make use of the player and call methods
+  }
+
+
   useEffect(() => {
     if (!playerRef.current) {
       return
@@ -21,20 +29,25 @@ const Step3: FC<Props> = ({ stepper }) => {
   }, [])
   return (
     <div className='w-100'>
-      <div className='pb-10 pb-lg-12'>
-        <h2 className='fw-bolder text-dark'>Good Luck</h2>
+      <div className='pb-1 pb-lg-1'>
 
-        <div className='text-gray-400 fw-bold fs-6'>
-          Your application is on the way.
-        </div>
       </div>
 
-      <div className='fv-row mb-10'>
+      <div className='fv-row text-center' >
+        <h1 className='fw-bolder text-primary'>Good Luck!</h1>
+
+        <div className='text-gray-900 fw-bold fs-6'>
+          Your application is on the way.
+        </div>
         <Player
           ref={playerRef}
-          src="https://assets9.lottiefiles.com/packages/lf20_a1EoSR.json"
-          style={{ height: '200px', width: '200px' }}
+          src="https://assets10.lottiefiles.com/private_files/lf30_o0calpsv.json"
+          style={{  width: '300px' }}
           speed={1}
+          autoplay={true}
+          onEvent={event => {
+            if (event === 'load') doSomething(); // check event type and do something
+          }}
           keepLastFrame={true}
         >
           <Controls visible={false} buttons={['play', 'repeat', 'frame', 'debug']} />

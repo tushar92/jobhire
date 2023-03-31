@@ -1,7 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState,useEffect, FC } from 'react'
+import React, { useState, useEffect, FC } from 'react'
 import { KTSVG, toAbsoluteUrl } from '../../../../../_metronic/helpers'
 import { Dropdown3, ChatInner } from '../../../../../_metronic/partials'
+
+import { TrackApplication } from '../../../../../_metronic/partials/widgets'
 import { Vertical } from '../../../wizards/components/Vertical'
 import { Horizontal } from '../../../wizards/components/Horizontal'
 import { OverlayTrigger, Tooltip } from 'react-bootstrap'
@@ -195,9 +197,9 @@ const Group: FC = () => {
         </div>
       </div>
       <div className="modal fade" tabIndex={-1} id="kt_modal_1">
-        <div className="modal-dialog" style={{ maxWidth: "1200px" }}>
+        <div className="modal-dialog" style={{ maxWidth: "600px" }}>
           <div className="modal-content">
-            <div className="modal-header">
+            <div className="modal-header bg-gray-200 border-0 pb-0">
               <h3 className="modal-title "> {currentJob.job_name} - {currentJob.company}</h3>
               <div
                 className="btn btn-icon btn-sm btn-active-light-primary ms-2"
@@ -210,19 +212,16 @@ const Group: FC = () => {
                 />
               </div>
             </div>
-            <div className="modal-body bg-gray-200" key={currentJob.id}>
-              <Vertical job={currentJob} random= {random} />
+            <div className="modal-body rounded  bg-gray-200" key={currentJob.id}>
+              <Vertical job={currentJob} random={random} />
               {/*<Horizontal />*/}
             </div>
-            <div className="modal-footer">
 
-
-            </div>
           </div>
         </div>
       </div>
       <div className="modal fade" tabIndex={-1} id="trackApp_modal">
-        <div className="modal-dialog" style={{ maxWidth: "1200px" }}>
+        <div className="modal-dialog" style={{ maxWidth: "600px" }}>
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title">Application History</h5>
@@ -238,19 +237,17 @@ const Group: FC = () => {
               </div>
             </div>
             <div className="modal-body">
-              <Horizontal />
+              <TrackApplication className='card-xl-stretch mb-xl-8' job={currentJob}/>
             </div>
             <div className="modal-footer">
               <button
                 type="button"
-                className="btn-sm btn-light"
+                className="btn btn-sm btn-primary"
                 data-bs-dismiss="modal"
               >
                 Close
-        </button>
-              <button type="button" className="btn btn-primary">
-                Save changes
-        </button>
+              </button>
+
             </div>
           </div>
         </div>

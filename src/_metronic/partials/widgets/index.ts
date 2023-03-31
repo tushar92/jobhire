@@ -30,6 +30,7 @@ export * from './lists/ListsWidget5'
 export * from './lists/ListsWidget6'
 export * from './lists/ListsWidget7'
 export * from './lists/ListsWidget8'
+export * from './lists/TrackApplication'
 
 // statistics
 export * from './statistics/StatisticsWidget1'

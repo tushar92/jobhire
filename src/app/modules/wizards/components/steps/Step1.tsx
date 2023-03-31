@@ -1,12 +1,19 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { FC, useState } from 'react'
 import { KTSVG } from '../../../../../_metronic/helpers'
-import { Field, ErrorMessage } from 'formik'
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css'
+import { Field, ErrorMessage, getIn } from 'formik'
 import clsx from 'clsx'
+
 
 const Step1: FC = () => {
   const [uploadedFileName, setuploadedFileName] = useState(null)
   const [uploadKey, setUploadKey] = useState(Math.random().toString(36))
+  const [isFocused, setFocused] = useState(false);
+  const [phoneValue, setPhoneValue] = useState("");
+  const onValueChange = (phoneNumber: any) => { }
+
   const handleChange = (e: any) => {
     e.preventDefault();
     if (e.target.files && e.target.files[0]) {
@@ -22,7 +29,7 @@ const Step1: FC = () => {
 
   return (
     <div className='w-100'>
-      <div className='pb-10 pb-lg-15'>
+      {/*<div className='pb-10 pb-lg-15'>
         <h2 className='fw-bolder d-flex align-items-center text-dark'>
           Attach Your Resume
           <i
@@ -40,35 +47,39 @@ const Step1: FC = () => {
           </a>
           .
         </div>
-      </div>
+      </div>*/}
 
       <div className='fv-row'>
         <div className="row">
-          <div className={clsx({ 'col-lg-12': !uploadedFileName }, { 'col-lg-10': uploadedFileName })}>
+          <div className="col-lg-12">
+            <label className='form-label mb-3 fw-bold'>  Attach Your Resume</label>
+          </div>
+
+          <div className={clsx({ 'col-lg-12': !uploadedFileName }, { 'col-lg-11': uploadedFileName })}>
             {/*<label htmlFor="formFileSm w-100px" className="form-label ">Small file input example</label>*/}
             {/* Uploader Area*/}
             {!uploadedFileName && <label
-              className='btn btn-outline btn-outline-dashed btn-outline-primary p-5 d-flex align-items-center justify-content-center mb-10'
+              className='btn btn-sm btn-outline btn-active-light-primary p-3 d-flex align-items-center justify-content-center mb-10'
               htmlFor='formFileSm'
             >
 
-              <KTSVG path="/media/icons/duotune/files/fil013.svg" className="svg-icon-muted svg-icon-2hx" />
+              <KTSVG path="/media/icons/duotune/files/fil013.svg" className="svg-icon-muted svg-icon-2x" />
 
               <span className='d-block fw-bold text-start'>
-                <span className='text-gray-700 fw-bolder d-block fs-4'>Click here to upload</span>
+                <span className='text-gray-800  d-block fs-6'>Click here to upload</span>
               </span>
             </label>}
 
             {/* Uploaded Area*/}
 
-            {uploadedFileName && <div className='notice d-flex bg-light-success rounded border-success border border-dashed mb-9 p-6 justify-content-center'>
+            {uploadedFileName && <div className='notice d-flex bg-light-primary rounded  mb-9 p-3 justify-content-center'>
               <KTSVG
                 path='/media/icons/duotune/files/fil016.svg'
-                className='svg-icon-2tx svg-icon-success me-4'
+                className='svg-icon-2x svg-icon-primary me-4'
               />
               <div className='d-flex'>
                 <div className='fw-bold text-center d-flex'>
-                  <div className='fs-4 text-success d-flex align-items-center'>
+                  <div className='fs-5 text-primary d-flex align-items-center'>
                     {uploadedFileName}
                   </div>
                 </div>
@@ -77,18 +88,83 @@ const Step1: FC = () => {
             <input className="form-control form-control-lg form-control-primary d-none" id="formFileSm" type="file" onChange={handleChange} key={uploadKey} />
           </div>
 
-          <div className='col-lg-2'>
+          <div className='col-lg-1'>
             {uploadedFileName && <a href="#" className="" onClick={clearFileInput}>
-              <div className='notice d-flex bg-light-danger rounded border-danger border border-dashed mb-9 p-6 justify-content-center'>
+              <div className='notice d-flex  btn-active-light-danger   mb-9 p-3 justify-content-center'>
                 <KTSVG
-                  path='/media/icons/duotune/files/fil015.svg'
-                  className='svg-icon-2tx svg-icon-danger '
+                  path='/media/icons/duotune/general/gen042.svg'
+                  className='svg-icon-2x svg-icon-danger '
                 />
 
               </div>
             </a>}
           </div>
         </div>
+
+        <div className='mb-10 fv-row row'>
+          <div className="col-lg-6">
+            <label className='form-label mb-3 fw-bold'>Email</label>
+            <Field
+              type='email'
+              className='form-control form-control-lg form-control-solid input-focus-primary text-dark fs-6 border-secondary '
+              name='email'
+            />
+            <div className='text-danger mt-2'>
+              <ErrorMessage name='email' />
+            </div>
+          </div>
+          <div className="col-lg-6">
+            <label className='form-label mb-3 fw-bold'>Phone</label>
+            <PhoneInput
+              placeholder="Enter phone number"
+              name=""
+              international
+              value={phoneValue}
+              onChange={onValueChange}
+              defaultCountry="AU"
+              className='form-control form-control-lg form-control-solid fs-6 border-secondary '
+              countryCallingCodeEditable={false}
+            />
+
+          </div>
+        </div>
+
+        <div className='mb-10 fv-row row'>
+          <div className="col-lg-6">
+            <label className='form-label mb-3 fw-bold'>Australian working rights</label>
+            <div className=' fv-row'>
+              <select
+                className='form-select form-select-solid form-select-lg fs-6 text-gray-800 border-secondary '
+                name="workRights"
+              >
+                <option value=''>Select your working rights</option>
+                <option value='USD'> Citizen</option>
+                <option value='GBP'> Permanent Resident</option>
+                <option value='AUD'>VISA transfer required </option>
+                <option value='JPY'>Offshore - VISA  required</option>
+              </select>
+
+            </div>
+          </div>
+          <div className="col-lg-6">
+            <label className='form-label mb-3 fw-bold'>How soon can you start?</label>
+            <div className=' fv-row'>
+              <select
+                className='form-select form-select-solid form-select-lg fs-6 text-gray-800 border-secondary '
+                name="avail"
+              >
+                <option value=''>Select Availability</option>
+                <option value='USD'>ASAP</option>
+                <option value='GBP'>In 2 Weeks</option>
+                <option value='AUD'>In 4 Weeks </option>
+                <option value='JPY'>Not sure</option>
+              </select>
+
+            </div>
+          </div>
+
+        </div>
+
         {/*<div className='row'>
           <div className='col-lg-6'>
             <Field

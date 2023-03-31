@@ -3,7 +3,7 @@ import {useIntl} from 'react-intl'
 import {PageTitle} from '../../../_metronic/layout/core'
 import {
   ListsWidget4,
-  ListsWidget5,
+  ListsWidget6,
   TablesWidget10,
   FeaturedJobs,
   RecommendedJobs,
@@ -41,7 +41,7 @@ const DashboardPage = () => {
       <div className='row gy-5 g-xl-8'>
         {/* begin::Col  */}
         <div className='col-xl-4'>
-          <ListsWidget5 className='card-xl-stretch mb-xl-8' />
+          <ListsWidget6 className='card-xl-stretch mb-xl-8' />
         </div>
         {/* end::Col  */}
         {/* begin::Col  */}
